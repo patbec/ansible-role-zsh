@@ -1,0 +1,12 @@
+zsh_dependencies: []
+
+# Set this variable in the playbook to distribute a custom .zshrc for each user.
+zsh_use_config: false
+
+zsh_config_template: "zshrc.j2"
+zsh_config_dest: "$HOME/.zshrc"
+zsh_config_backup: true
+zsh_config_overwrite: false
+
+zsh_users:
+  - "{{ ansible_user }}"

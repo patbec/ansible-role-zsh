@@ -1,0 +1,15 @@
+---
+# Make sure that zsh and user-defined dependencies are installed.
+- include_tasks: setup.yml
+  tags:
+    - zsh
+    - dependencies
+
+# Make sure that the default shell is zsh and the .zshrc is configured.
+- include_tasks: zsh.yml
+  tags:
+    - zsh
+    - zshrc
+  vars:
+    zsh_user: "{{ item }}"
+  loop: "{{ zsh_users }}"

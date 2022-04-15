@@ -1,0 +1,37 @@
+---
+galaxy_info:
+  role_name: zsh
+  author: patbec
+  description: Installs and configures zsh for one or more users on macOS or Ubuntu.
+
+  license: MIT
+
+  min_ansible_version: "1.9"
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - "xenial"
+        - "yakkety"
+        - "zesty"
+        - "artful"
+        - "bionic"
+        - "cosmic"
+        - "disco"
+        - "eoan"
+        - "focal"
+        - "groovy"
+        - "hirsute"
+        - "impish"
+    - name: macOS
+      versions:
+        - "Big-Sur"
+
+  galaxy_tags:
+    - zsh
+    - zshrc
+    - shell
+    - terminal
+    - console
+
+dependencies: []

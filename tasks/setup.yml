@@ -1,0 +1,41 @@
+---
+- name: Ensure zsh dependencies are installed.
+  block:
+    - name: Install zsh dependencies for Linux.
+      package:
+        name: "{{ zsh_dependencies }}"
+        state: present
+      become: true
+      when:
+        - "ansible_system == 'Linux'"
+
+    - name: Install zsh dependencies for macOS.
+      homebrew:
+        name: "{{ zsh_dependencies }}"
+        state: present
+      become: false
+      when:
+        - "ansible_system == 'Darwin'"
+
+- name: Ensure zsh is installed.
+  block:
+    - name: Install zsh for Linux.
+      package:
+        name: "zsh"
+        state: present
+      become: true
+      when:
+        - "ansible_system == 'Linux'"
+
+    - name: Install zsh for macOS.
+      homebrew:
+        name: "zsh"
+        state: present
+      become: false
+      when:
+        - "ansible_system == 'Darwin'"
+
+- name: Get zsh installed path.
+  shell: "command -v zsh"
+  register: zsh_installed_path
+  changed_when: false
