@@ -1,4 +1,4 @@
-<img align="right" width="15%" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Ansible_logo.svg/480px-Ansible_logo.svg.png" alt="zsh console"/>
+<img align="right" width="15%" src="https://user-images.githubusercontent.com/29308797/163578065-cf057ee2-2dd5-4f19-8bf1-9ab71962b98b.png" alt="zsh console"/>
 
 # Ansible Role ZSH
 
@@ -258,6 +258,9 @@ alias lx='exa --group-directories-first --all --long --binary --group --header -
 {{ zsh_additional_lines }}
 {% endif %}
 ```
+
+The look of the shell after these changes:
+<img width="100%" alt="zsh-shell-preview" src="https://user-images.githubusercontent.com/29308797/163578137-67bb9dbf-5fe7-4109-97e5-b9c22a5afd2b.png">
 
 ### Sample 6
 
