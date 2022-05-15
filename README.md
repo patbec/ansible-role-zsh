@@ -259,7 +259,6 @@ alias lx='exa --group-directories-first --all --long --binary --group --header -
 {% endif %}
 ```
 
-The look of the shell after these changes:
 <img width="100%" alt="zsh console" src="https://raw.githubusercontent.com/patbec/zsh-console-icons/master/zsh-console.svg">
 
 <p align="right">
