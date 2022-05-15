@@ -259,7 +259,7 @@ alias lx='exa --group-directories-first --all --long --binary --group --header -
 {% endif %}
 ```
 
-<img width="100%" alt="zsh console" src="https://raw.githubusercontent.com/patbec/zsh-console-icons/master/zsh-console.svg">
+<img width="100%" height="450px" alt="zsh console" src="https://raw.githubusercontent.com/patbec/zsh-console-icons/master/zsh-console.svg">
 
 <p align="right">
     <a href="https://github.com/patbec/zsh-console-icons#colors">Show used ANSI colors</a>
