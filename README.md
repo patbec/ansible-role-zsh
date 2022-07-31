@@ -1,10 +1,17 @@
-<img align="right" width="15%" src="https://raw.githubusercontent.com/patbec/zsh-console-icons/master/zsh-console-auto.svg" alt="zsh console icon"/>
+<img align="right" width="22%" src="https://raw.githubusercontent.com/patbec/zsh-console-icons/master/zsh-console-auto.svg" alt="zsh console icon"/>
 
-# Ansible Role ZSH
+# Ansible Role: ZSH
 
-This is a basic ansible role to set up **ZSH** on Ubuntu or macOS. It should also work on many other Linux variants.
+![Ansible Role](https://img.shields.io/ansible/role/d/58811) ![Ansible Quality Score](https://img.shields.io/ansible/quality/58811) ![GitHub](https://img.shields.io/github/license/patbec/ansible-role-zsh)
 
-> If you have any problems, feel free to create an issue.
+This is a simple role to install and set up the **zsh-shell** on Linux.
+
+The following steps are supported:
+- Install zsh with custom packages
+- Set zsh as default shell for the specified users
+- Optionally distribute a `.zshrc` file
+
+This role is kept simple, uses the default package manager and contains no overhead. If you have any problems, feel free to create an issue.
 
 
 ## Preparation
@@ -18,40 +25,35 @@ ansible-galaxy install patbec.zsh
 
 Default variables in this playbook.
 
-```
-# Dependencies that are to be installed. The default package manager on the respective system is used.
-zsh_dependencies: []
-
-# Set this variable in the playbook to distribute a custom .zshrc for each user.
-zsh_use_config: false
-
-# The template used to create the user's .zshrc file when zsh_use_config is true.
-zsh_config_template: "zshrc.j2"
-
-# Destination path for the .zshrc config file.
-zsh_config_dest: "$HOME/.zshrc"
-
-# Create a backup from the existing .zshrc files when the role changes it.
-zsh_config_backup: true
-
-# Overwrites the .zshrc if the content differs with the existing file.
-zsh_config_overwrite: false
-
-# Listing of users for whose ZSH is to be set up and used as the default shell.
-zsh_users:
-  - "{{ ansible_user }}"
-```
+| Name                 | Description                                          | Default Value        |
+| -------------------- | ---------------------------------------------------- | -------------------- |
+| zsh_use_config       | Distribute a custom `.zshrc` for each user.          | `false`              |
+| zsh_config_template  | Jinja template for the `.zshrc` file.                | `zshrc.j2`           |
+| zsh_config_dest      | Path of the `.zshrc` file.                           | `$HOME/.zshrc`       |
+| zsh_config_backup    | Creates a backup before overwriting.                 | `true`               |
+| zsh_config_overwrite | Overwrites the `.zshrc` file if it exists.           | `false`              |
+| zsh_users            | A list of users who should get zsh as default shell. | `{{ ansible_user }}` |
+| zsh_dependencies     | A listing of additional packages to be installed.    | `[]`                 |
 
 ## Sample playbooks
 
 Here are a few examples of how this role can be used.
 
-### Sample 1
+  - [Sample 1: Basic](#sample-1-basic)<br>
+  Install zsh only for the default ssh connection user.<br><br>
+  - [Sample 2: Multiple users](#sample-2-multiple-users)<br>
+  Install zsh for a list of specified users.<br><br>
+  - [Sample 3: User defined config file](#sample-3-user-defined-config-file)<br>
+  Install zsh for a list of specified users with a custom `.zshrc` file.<br><br>
+  - [Sample 4: Custom dependencies](#sample-4-custom-dependencies)<br>
+  Install zsh for a list of specified users with a custom `.zshrc` file and a custom dependency.<br><br>
+  - [Sample 5: Autosuggestions and Syntax-Highlighting](#sample-5-autosuggestions-and-syntax-highlighting)<br>
+  Complete example of a ZSH shell with autocompletion and syntax highlighting. <sup>[Sample Preview](#sample-preview)</sup><br><br>
 
+### Sample 1: Basic
+Install zsh only for the default ssh connection user.
 - Install zsh for the current user.
 - Set it as default shell.
-
-> Note: The default value of the `zsh_users` variable is `ansible_user`.
 
 ```
 - name: zsh
@@ -61,8 +63,8 @@ Here are a few examples of how this role can be used.
     - patbec.zsh
   tasks:
 ```
-### Sample 2
-
+### Sample 2: Multiple users
+Install zsh for a list of specified users.
 - Install zsh for the specified users.
 - Set it as default shell.
 
@@ -77,8 +79,8 @@ Here are a few examples of how this role can be used.
     - patbec.zsh
   tasks:
 ```
-### Sample 3
-
+### Sample 3: User defined config file
+Install zsh for a list of specified users with a custom `.zshrc` file.
 - Install zsh for the specified users.
 - Set it as default shell.
 - Distribute a custom `.zshrc` for each user.
@@ -88,10 +90,6 @@ Here are a few examples of how this role can be used.
   hosts: all
   vars:
     zsh_use_config: true
-
-    zsh_config_template: "zshrc.j2"
-    zsh_config_dest: "$HOME/.zshrc"
-    zsh_config_backup: true
     zsh_config_overwrite: true
 
     zsh_users:
@@ -115,7 +113,8 @@ Here are a few examples of how this role can be used.
 # Add your custom content here.
 ```
 
-### Sample 4
+### Sample 4: Custom dependencies
+Install zsh for a list of specified users with a custom `.zshrc` file and a custom dependency.
 - Install zsh for the specified users.
 - Set it as default shell.
 - Distribute a custom `.zshrc` for each user.
@@ -125,19 +124,15 @@ Here are a few examples of how this role can be used.
 - name: zsh
   hosts: all
   vars:
-    zsh_dependencies:
-      - exa
-
     zsh_use_config: true
-
-    zsh_config_template: "zshrc.j2"
-    zsh_config_dest: "$HOME/.zshrc"
-    zsh_config_backup: true
     zsh_config_overwrite: true
 
     zsh_users:
       - lorem
       - ipsum
+
+    zsh_dependencies:
+      - exa
   roles:
     - patbec.zsh
   tasks:
@@ -158,76 +153,39 @@ PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
 PROMPT+=" %{$fg[cyan]%}%c%{$reset_color%} "
 
 alias ls='exa --group-directories-first'
-alias  l='exa --group-directories-first --all --long --binary --group --classify'
 alias ll='exa --group-directories-first --all --long --binary --group --classify --grid'
-alias la='exa --group-directories-first --all --long --binary --group --header --links --inode --created --modified --accessed --blocks --time-style=long-iso --color-scale'
-alias lx='exa --group-directories-first --all --long --binary --group --header --links --inode --created --modified --accessed --blocks --time-style=long-iso --color-scale --extended'
+alias la='exa --group-directories-first --all --long --binary --group --header --links --inode --modified --blocks --time-style=long-iso --color-scale'
+alias lx='exa --group-directories-first --all --long --binary --group --header --links --inode --modified --blocks --time-style=long-iso --color-scale --extended'
 ```
 
-### Sample 5
-
-> This sample playbook supports **Ubuntu** and **macOS** as target systems.
-
+### Sample 5: Autosuggestions and Syntax-Highlighting
+Complete example of a ZSH shell with [autosuggestions](https://github.com/zsh-users/zsh-autosuggestions#zsh-autosuggestions), [syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting#zsh-syntax-highlighting-) and [exa](https://the.exa.website) as `ls` alternative.
 - Install zsh for the specified user.
 - Set it as default shell.
 - Distribute a custom `.zshrc` for this user.
 - Install custom dependencies.
 
-`/playbook-test.yml` file in your playbook folder:
 ```
 - name: zsh
   hosts: all
   vars:
+    zsh_use_config: true
+    zsh_config_overwrite: true
+
+    zsh_users:
+      - lorem
+      - ipsum
+
     zsh_dependencies:
       - exa
       - zsh-autosuggestions
       - zsh-syntax-highlighting
-
-    zsh_use_config: true
-
-    zsh_config_template: "zshrc.j2"
-    zsh_config_dest: "$HOME/.zshrc"
-    zsh_config_backup: true
-    zsh_config_overwrite: true
-
   roles:
     - patbec.zsh
   tasks:
 ```
 
-`/inventory.txt` file in your playbook folder:
-```
-[servers]
-thinkbox ansible_user=patbec ansible_host=192.168.178.100
-
-[private]
-macos ansible_user=patbec ansible_connection=local
-```
-
-`/host_vars/thinkbox.yml` file in your host specific folder:
-```
-architecture_independent_data: /usr/share
-
-zsh_users:
-  - patbec
-  - root
-
-zsh_additional_lines: |
-  alias config='cd /etc/nginx/sites-enabled/ && ls'
-```
-
-`/host_vars/macos.yml` file in your host specific folder:
-```
-architecture_independent_data: /usr/local/share
-
-zsh_users:
-  - patbec
-
-zsh_additional_lines: |
-  alias p='cd /Users/patbec/Documents/GitHub'
-```
-
-`/templates/zshrc.j2` file in your templates folder:
+`zshrc.j2` file in your templates folder:
 ```
 #
 # {{ ansible_managed }}
@@ -242,14 +200,18 @@ autoload colors && colors
 PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
 PROMPT+=" %{$fg[cyan]%}%c%{$reset_color%} "
 
-source {{ architecture_independent_data }}/zsh-autosuggestions/zsh-autosuggestions.zsh
-source {{ architecture_independent_data }}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source  /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source  /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 alias ls='exa --group-directories-first'
-alias  l='exa --group-directories-first --all --long --binary --group --classify'
 alias ll='exa --group-directories-first --all --long --binary --group --classify --grid'
-alias la='exa --group-directories-first --all --long --binary --group --header --links --inode --created --modified --accessed --blocks --time-style=long-iso --color-scale'
-alias lx='exa --group-directories-first --all --long --binary --group --header --links --inode --created --modified --accessed --blocks --time-style=long-iso --color-scale --extended'
+alias la='exa --group-directories-first --all --long --binary --group --header --links --inode --modified --blocks --time-style=long-iso --color-scale'
+alias lx='exa --group-directories-first --all --long --binary --group --header --links --inode --modified --blocks --time-style=long-iso --color-scale --extended'
+
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=50000
+SAVEHIST=50000
+setopt INC_APPEND_HISTORY
 
 {% if zsh_additional_lines is defined %}
 #
@@ -259,62 +221,15 @@ alias lx='exa --group-directories-first --all --long --binary --group --header -
 {% endif %}
 ```
 
+#### Sample Preview
+
+Preview of the configuration from [step 5](#sample-5-autosuggestions-and-syntax-highlighting), using [autosuggestions](https://github.com/zsh-users/zsh-autosuggestions#zsh-autosuggestions), [syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting#zsh-syntax-highlighting-) and [exa](https://the.exa.website) as `ls` alternative. You can find the used [ANSI console colors here](https://github.com/patbec/zsh-console-icons#colors).
 <img width="100%" height="450px" alt="zsh console" src="https://raw.githubusercontent.com/patbec/zsh-console-icons/master/zsh-console.svg">
 
-<p align="right">
-    <a href="https://github.com/patbec/zsh-console-icons#colors">Show used ANSI colors</a>
-</p>
+## Licence
 
-### Sample 6
+This project is licensed under MIT - See the [LICENSE](LICENSE) file for more information.
 
-- Install zsh for the specified users.
-- Set it as default shell.
-- Distribute a custom `.zshrc` for each user.
-- Install custom dependencies.
-```
-- name: zsh
-  hosts: all
-  vars:
-    zsh_dependencies:
-      - exa
-      - zsh-autosuggestions
-      - zsh-syntax-highlighting
+---
 
-    zsh_use_config: true
-
-    zsh_config_template: "zshrc.j2"
-    zsh_config_dest: "$HOME/.zshrc"
-    zsh_config_backup: true
-    zsh_config_overwrite: true
-
-    zsh_users:
-      - lorem
-      - ipsum
-  roles:
-    - patbec.zsh
-  tasks:
-```
-`zshrc.j2` file in your templates folder:
-```
-#
-# {{ ansible_managed }}
-#
-
-{% if zsh_config_overwrite is true %}
-# Changes to this file will be overwritten by Ansible.
-{% endif %}
-
-autoload colors && colors
-
-PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
-PROMPT+=" %{$fg[cyan]%}%c%{$reset_color%} "
-
-source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-alias ls='exa --group-directories-first'
-alias  l='exa --group-directories-first --all --long --binary --group --classify'
-alias ll='exa --group-directories-first --all --long --binary --group --classify --grid'
-alias la='exa --group-directories-first --all --long --binary --group --header --links --inode --created --modified --accessed --blocks --time-style=long-iso --color-scale'
-alias lx='exa --group-directories-first --all --long --binary --group --header --links --inode --created --modified --accessed --blocks --time-style=long-iso --color-scale --extended'
-```
+&uarr; [Back to top](#ansible-role-zsh)
