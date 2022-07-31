@@ -39,16 +39,16 @@ Default variables in this playbook.
 
 Here are a few examples of how this role can be used.
 
-  - [Sample 1: Basic](#sample-1-basic)<br>
+  - [Sample 1: Basic](https://github.com/patbec/ansible-role-zsh#sample-1-basic)<br>
   Install zsh only for the default ssh connection user.<br><br>
-  - [Sample 2: Multiple users](#sample-2-multiple-users)<br>
+  - [Sample 2: Multiple users](https://github.com/patbec/ansible-role-zsh#sample-2-multiple-users)<br>
   Install zsh for a list of specified users.<br><br>
-  - [Sample 3: User defined config file](#sample-3-user-defined-config-file)<br>
+  - [Sample 3: User defined config file](https://github.com/patbec/ansible-role-zsh#sample-3-user-defined-config-file)<br>
   Install zsh for a list of specified users with a custom `.zshrc` file.<br><br>
-  - [Sample 4: Custom dependencies](#sample-4-custom-dependencies)<br>
+  - [Sample 4: Custom dependencies](https://github.com/patbec/ansible-role-zsh#sample-4-custom-dependencies)<br>
   Install zsh for a list of specified users with a custom `.zshrc` file and a custom dependency.<br><br>
-  - [Sample 5: Autosuggestions and Syntax-Highlighting](#sample-5-autosuggestions-and-syntax-highlighting)<br>
-  Complete example of a ZSH shell with autocompletion and syntax highlighting. <sup>[Sample Preview](#sample-preview)</sup><br><br>
+  - [Sample 5: Autosuggestions and Syntax-Highlighting](https://github.com/patbec/ansible-role-zsh#sample-5-autosuggestions-and-syntax-highlighting)<br>
+  Complete example of a ZSH shell with autocompletion and syntax highlighting. <sup>[Sample Preview](https://github.com/patbec/ansible-role-zsh#sample-preview)</sup><br><br>
 
 ### Sample 1: Basic
 Install zsh only for the default ssh connection user.
@@ -228,8 +228,8 @@ Preview of the configuration from [step 5](#sample-5-autosuggestions-and-syntax-
 
 ## Licence
 
-This project is licensed under MIT - See the [LICENSE](LICENSE) file for more information.
+This project is licensed under MIT - See the [LICENSE](https://github.com/patbec/ansible-role-zsh/blob/master/LICENSE) file for more information.
 
 ---
 
-&uarr; [Back to top](#ansible-role-zsh)
+&uarr; [Back to top](https://github.com/patbec/ansible-role-zsh#ansible-role-zsh)
