@@ -223,7 +223,7 @@ setopt INC_APPEND_HISTORY
 
 #### Sample Preview
 
-Preview of the configuration from [step 5](#sample-5-autosuggestions-and-syntax-highlighting), using [autosuggestions](https://github.com/zsh-users/zsh-autosuggestions#zsh-autosuggestions), [syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting#zsh-syntax-highlighting-) and [exa](https://the.exa.website) as `ls` alternative. You can find the used [ANSI console colors here](https://github.com/patbec/zsh-console-icons#colors).
+Preview of the configuration from [step 5](https://github.com/patbec/ansible-role-zsh#sample-5-autosuggestions-and-syntax-highlighting), using [autosuggestions](https://github.com/zsh-users/zsh-autosuggestions#zsh-autosuggestions), [syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting#zsh-syntax-highlighting-) and [exa](https://the.exa.website) as `ls` alternative. You can find the used [ANSI console colors here](https://github.com/patbec/zsh-console-icons#colors).
 <img width="100%" height="450px" alt="zsh console" src="https://raw.githubusercontent.com/patbec/zsh-console-icons/master/zsh-console.svg">
 
 ## Licence
