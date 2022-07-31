@@ -48,7 +48,7 @@ Here are a few examples of how this role can be used.
   - [Sample 4: Custom dependencies](https://github.com/patbec/ansible-role-zsh#sample-4-custom-dependencies)<br>
   Install zsh for a list of specified users with a custom `.zshrc` file and a custom dependency.<br><br>
   - [Sample 5: Autosuggestions and Syntax-Highlighting](https://github.com/patbec/ansible-role-zsh#sample-5-autosuggestions-and-syntax-highlighting)<br>
-  Complete example of a ZSH shell with autocompletion and syntax highlighting. <sup>[Sample Preview](https://github.com/patbec/ansible-role-zsh#sample-preview)</sup><br><br>
+  Complete example of a ZSH shell with autosuggestions and syntax highlighting. <sup>[Sample Preview](https://github.com/patbec/ansible-role-zsh#sample-preview)</sup><br><br>
 
 ### Sample 1: Basic
 Install zsh only for the default ssh connection user.
