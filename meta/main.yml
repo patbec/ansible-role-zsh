@@ -2,7 +2,7 @@
 galaxy_info:
   role_name: zsh
   author: patbec
-  description: Installs and configures zsh for one or more users on macOS or Ubuntu.
+  description: Installs and configures zsh for one or more users on Linux.
 
   license: MIT
 
@@ -23,12 +23,12 @@ galaxy_info:
         - "groovy"
         - "hirsute"
         - "impish"
-    - name: macOS
-      versions:
-        - "Big-Sur"
 
   galaxy_tags:
     - zsh
+    - zshell
+    - z-shell
+    - zsh-shell
     - zshrc
     - shell
     - terminal
