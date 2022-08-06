@@ -2,7 +2,7 @@
 galaxy_info:
   role_name: zsh
   author: patbec
-  description: Installs and configures zsh for one or more users on Linux.
+  description: A simple role to install and set up the zsh-shell on Linux.
 
   license: MIT
 
