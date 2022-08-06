@@ -211,7 +211,9 @@ alias lx='exa --group-directories-first --all --long --binary --group --header -
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=50000
 SAVEHIST=50000
+
 setopt INC_APPEND_HISTORY
+setopt AUTOCD
 
 {% if zsh_additional_lines is defined %}
 #
