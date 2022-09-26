@@ -1,15 +1,18 @@
 ---
-# Make sure that zsh and user-defined dependencies are installed.
-- include_tasks: setup.yml
+# Make sure that zsh and user-defined dependencies are installed and global settings are distributed.
+- include_tasks: system.yml
   tags:
     - zsh
+    - config
+    - shell
     - dependencies
 
-# Make sure that the default shell is zsh and the .zshrc is configured.
-- include_tasks: zsh.yml
+# Make sure that the default shell is zsh and the user settings are distributed.
+- include_tasks: users.yml
   tags:
     - zsh
-    - zshrc
-  vars:
-    zsh_user: "{{ item }}"
+    - config
+    - shell
   loop: "{{ zsh_users }}"
+  loop_control:
+    loop_var: zsh_user

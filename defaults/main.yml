@@ -1,12 +1,35 @@
 zsh_dependencies: []
 
-# Set this variable in the playbook to distribute a custom .zshrc for each user.
-zsh_use_config: false
-
-zsh_config_template: "zshrc.j2"
-zsh_config_dest: "$HOME/.zshrc"
+zsh_config_mode: 0644
 zsh_config_backup: true
 zsh_config_overwrite: false
+
+zsh_users_config: []
+zsh_system_config: []
+
+# zsh_users_config:
+#   - template: "zshrc.j2"
+#     filepath: "$HOME/.zshrc"
+#   - template: "zshenv.j2"
+#     filepath: "$HOME/.zshenv"
+#   - template: "zprofile.j2"
+#     filepath: "$HOME/.zprofile"
+#   - template: "zlogin.j2"
+#     filepath: "$HOME/.zlogin"
+#   - template: "zlogout.j2"
+#     filepath: "$HOME/.zlogout"
+
+# zsh_system_config:
+#   - template: "zshrc.j2"
+#     filepath: "/etc/zshrc"
+#   - template: "zshenv.j2"
+#     filepath: "/etc/zshenv"
+#   - template: "zprofile.j2"
+#     filepath: "/etc/zprofile"
+#   - template: "zlogin.j2"
+#     filepath: "/etc/zlogin"
+#   - template: "zlogout.j2"
+#     filepath: "/etc/zlogout"
 
 zsh_users:
   - "{{ ansible_user }}"
