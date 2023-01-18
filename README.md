@@ -9,7 +9,7 @@ This is a simple role to install and set up the **zsh-shell** on Linux.
 The following steps are supported:
 - Install zsh with custom packages
 - Set zsh as default shell for the specified users
-- Optional distribution of one or more `.zshrc` files
+- Optional distribution of configuration files
 
 This role is kept simple, uses the standard package manager and contains minimal overhead. If you have any problems, feel free to create an issue.
 
@@ -308,40 +308,44 @@ Full example of a zsh shell.
 
 `zshrc.j2` file in your **templates folder**:
 
-```jinja
-{% if zsh_config_overwrite is true %}
-#
-# {{ ansible_managed }}
-#
-{% endif %}
+<details>
+  <summary><b>Click here to see the content</b></summary>
 
-autoload colors && colors
+  ```jinja
+  {% if zsh_config_overwrite is true %}
+  #
+  # {{ ansible_managed }}
+  #
+  {% endif %}
 
-PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
-PROMPT+=" %{$fg[cyan]%}%c%{$reset_color%} "
+  autoload colors && colors
 
-source  /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source  /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  PROMPT="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
+  PROMPT+=" %{$fg[cyan]%}%c%{$reset_color%} "
 
-alias ls='exa --group-directories-first'
-alias ll='exa --group-directories-first --all --long --binary --group --classify --grid'
-alias la='exa --group-directories-first --all --long --binary --group --header --links --inode --modified --blocks --time-style=long-iso --color-scale'
-alias lx='exa --group-directories-first --all --long --binary --group --header --links --inode --modified --blocks --time-style=long-iso --color-scale --extended'
+  source  /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  source  /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-HISTFILE="$HOME/.zsh_history"
-HISTSIZE=50000
-SAVEHIST=50000
+  alias ls='exa --group-directories-first'
+  alias ll='exa --group-directories-first --all --long --binary --group --classify --grid'
+  alias la='exa --group-directories-first --all --long --binary --group --header --links --inode --modified --blocks --time-style=long-iso --color-scale'
+  alias lx='exa --group-directories-first --all --long --binary --group --header --links --inode --modified --blocks --time-style=long-iso --color-scale --extended'
 
-setopt INC_APPEND_HISTORY
-setopt AUTOCD
+  HISTFILE="$HOME/.zsh_history"
+  HISTSIZE=50000
+  SAVEHIST=50000
 
-{% if zsh_additional_lines is defined %}
-#
-# Host specific additions
-#
-{{ zsh_additional_lines }}
-{% endif %}
-```
+  setopt INC_APPEND_HISTORY
+  setopt AUTOCD
+
+  {% if zsh_additional_lines is defined %}
+  #
+  # Host specific additions
+  #
+  {{ zsh_additional_lines }}
+  {% endif %}
+  ```
+</details>
 
 #### Preview
 
