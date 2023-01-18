@@ -1,14 +1,48 @@
 ---
-# Make sure that zsh and user-defined dependencies are installed and global settings are distributed.
-- include_tasks: system.yml
+- name: Ensure variables are set
+  ansible.builtin.assert:
+    that:
+      - zsh_dependencies is defined
+      - zsh_config_mode is defined
+      - zsh_config_backup is defined
+      - zsh_config_overwrite is defined
+      - zsh_users_config is defined
+      - zsh_system_config is defined
+      - zsh_users is defined
+
+- name: Ensure zsh with dependencies are installed
+  ansible.builtin.package:
+    name: "{{ ['zsh'] + zsh_dependencies }}"
+    state: present
+  become: true
+  tags:
+    - zsh
+    - dependencies
+
+- name: Get zsh installed path
+  ansible.builtin.shell: command -v zsh
+  register: zsh_installed_path
+  changed_when: false
+  tags:
+    - zsh
+    - shell
+
+- name: Create zsh config from template
+  ansible.builtin.template:
+    src: "{{ item.template }}"
+    dest: "{{ item.filepath }}"
+    mode: "{{ zsh_config_mode }}"
+    backup: "{{ zsh_config_backup }}"
+    force: "{{ zsh_config_overwrite }}"
+  become: true
+  loop: "{{ zsh_system_config }}"
   tags:
     - zsh
     - config
-    - shell
-    - dependencies
 
 # Make sure that the default shell is zsh and the user settings are distributed.
-- include_tasks: users.yml
+- name: Ensure zsh is the default shell and user-settings are distributed
+  ansible.builtin.include_tasks: users.yml
   tags:
     - zsh
     - config

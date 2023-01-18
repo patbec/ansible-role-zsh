@@ -1,5 +1,5 @@
 ---
-- name: Set user shell to zsh.
+- name: Set user shell to zsh
   ansible.builtin.user:
     name: "{{ zsh_user }}"
     shell: "{{ zsh_installed_path.stdout }}"
@@ -8,7 +8,7 @@
     - zsh
     - shell
 
-- name: Create zsh file from template.
+- name: Create zsh file from template
   ansible.builtin.template:
     src: "{{ item.template }}"
     dest: "{{ item.filepath }}"
