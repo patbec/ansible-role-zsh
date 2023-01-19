@@ -6,10 +6,7 @@ zsh_config_backup: true
 zsh_config_overwrite: false
 
 zsh_users:
-  - "{{ ansible_user }}"
+  - "{{ ansible_user_id }}"
 
-zsh_users_config:
-  - template: "zshrc.j2"
-    filepath: "$HOME/.zshrc"
-
+zsh_users_config: []
 zsh_system_config: []
