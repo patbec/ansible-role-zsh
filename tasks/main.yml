@@ -11,9 +11,10 @@
       - zsh_users is defined
 
 - name: Ensure zsh with dependencies are installed
-  ansible.builtin.package:
+  ansible.builtin.apt:
     name: "{{ ['zsh'] + zsh_dependencies }}"
     state: present
+    update_cache: true
   become: true
   tags:
     - zsh
