@@ -3,28 +3,20 @@ dependency:
   name: galaxy
 driver:
   name: docker
+scenario:
+  name: default
+  test_sequence:
+    - lint
+    - destroy
+    - syntax
+    - create
+    - converge
+    - idempotence
+    - verify
+    - destroy
 platforms:
-  - name: ubuntu-2204
-    image: geerlingguy/docker-ubuntu2204-ansible
-    pre_build_image: true
-  - name: ubuntu-2004
-    image: geerlingguy/docker-ubuntu2004-ansible
-    pre_build_image: true
-  - name: ubuntu-1804
-    image: geerlingguy/docker-ubuntu1804-ansible
-    pre_build_image: true
-  - name: ubuntu-1604
-    image: geerlingguy/docker-ubuntu1604-ansible
-    pre_build_image: true
-  - name: debian-11
-    image: geerlingguy/docker-debian11-ansible
-    pre_build_image: true
-  - name: debian-10
-    image: geerlingguy/docker-debian10-ansible
-    pre_build_image: true
-  - name: debian-9
-    image: geerlingguy/docker-debian9-ansible
-    pre_build_image: true
+  - name: instance
+    image: geerlingguy/docker-${MOLECULE_DISTRO:-ubuntu2204}-ansible
 provisioner:
   name: ansible
 verifier:

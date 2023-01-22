@@ -1,10 +1,45 @@
 ---
-# This is an example playbook to execute Ansible tests.
-
 - name: Verify
   hosts: all
   gather_facts: false
   tasks:
-  - name: Example assertion
-    ansible.builtin.assert:
-      that: true
+    - name: Get user shell
+      ansible.builtin.user:
+        name: root
+      register: user_info
+
+    - name: Get zsh installed path
+      ansible.builtin.command: /bin/which zsh
+      register: zsh_installed_path
+      changed_when: false
+
+    - name: Filepath assertion
+      ansible.builtin.assert:
+        that:
+          - zsh_installed_path.stdout.endswith("zsh")
+        fail_msg: Unexpected path to the shell returned.
+
+    - name: Shell assertion
+      ansible.builtin.assert:
+        that:
+          - user_info.shell is defined
+          - user_info.shell == zsh_installed_path.stdout
+        fail_msg: Failed to set zsh as default shell for a user.
+
+    - name: Check files paths
+      ansible.builtin.include_tasks: checksum.yml
+      vars:
+        sha1_checksum: 4d60d8b73b0c8025aa6ca21c8ee39298a5e62861
+      loop:
+        - /root/.zshrc # Checks the resolution of the $HOME environment variable too.
+        - /root/.zshenv
+        - /root/.zprofile
+        - /root/.zlogin
+        - /root/.zlogout
+        - /etc/zshrc
+        - /etc/zshenv
+        - /etc/zprofile
+        - /etc/zlogin
+        - /etc/zlogout
+      loop_control:
+        loop_var: file_to_check
