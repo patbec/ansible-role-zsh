@@ -19,5 +19,9 @@ platforms:
     image: geerlingguy/docker-${MOLECULE_DISTRO:-ubuntu2204}-ansible
 provisioner:
   name: ansible
+  inventory:
+    host_vars:
+      instance:
+        ansible_user: root
 verifier:
   name: ansible

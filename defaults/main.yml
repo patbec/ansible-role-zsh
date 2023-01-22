@@ -6,7 +6,7 @@ zsh_config_backup: true
 zsh_config_overwrite: false
 
 zsh_users:
-  - "{{ ansible_user_id }}"
+  - "{{ ansible_user }}"
 
 zsh_users_config: []
 zsh_system_config: []
