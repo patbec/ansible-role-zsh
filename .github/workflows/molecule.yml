@@ -11,7 +11,7 @@ name: Molecule
 
 defaults:
   run:
-    working-directory: "${{ github.repository }}"
+    working-directory: "patbec.zsh"
 
 jobs:
   lint:
@@ -21,7 +21,7 @@ jobs:
       - name: Check out the codebase
         uses: actions/checkout@v2
         with:
-          path: "${{ github.repository }}"
+          path: "patbec.zsh"
 
       - name: Set up Python 3
         uses: actions/setup-python@v2
@@ -54,7 +54,7 @@ jobs:
       - name: Check out the codebase
         uses: actions/checkout@v3
         with:
-          path: "${{ github.repository }}"
+          path: "patbec.zsh"
 
       - name: Set up Python 3
         uses: actions/setup-python@v4
