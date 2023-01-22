@@ -21,14 +21,14 @@
     - dependencies
 
 - name: Get zsh installed path
-  ansible.builtin.shell: command -v zsh
+  ansible.builtin.command: /bin/which zsh
   register: zsh_installed_path
   changed_when: false
   tags:
     - zsh
     - shell
 
-- name: Create zsh config from template
+- name: Create zsh system files
   ansible.builtin.template:
     src: "{{ item.template }}"
     dest: "{{ item.filepath }}"
@@ -42,7 +42,7 @@
     - config
 
 # Make sure that the default shell is zsh and the user settings are distributed.
-- name: Ensure zsh is the default shell and user-settings are distributed
+- name: Distribute zsh user settings
   ansible.builtin.include_tasks: users.yml
   tags:
     - zsh
