@@ -28,8 +28,6 @@
 
     - name: Check files paths
       ansible.builtin.include_tasks: checksum.yml
-      vars:
-        sha1_checksum: 4d60d8b73b0c8025aa6ca21c8ee39298a5e62861
       loop:
         - /root/.zshrc  # Checks the resolution of $HOME too.
         - /root/.zshenv

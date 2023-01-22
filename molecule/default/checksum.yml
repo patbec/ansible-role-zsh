@@ -14,5 +14,5 @@
       - file_info is defined
       - file_info.stat is defined
       - file_info.stat.exists == true
-      - file_info.stat.checksum == sha1_checksum1
+      - file_info.stat.checksum == 4d60d8b73b0c8025aa6ca21c8ee39298a5e62861
     fail_msg: An error occurred while distributing a zsh file.
