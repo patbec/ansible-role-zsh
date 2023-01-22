@@ -349,7 +349,7 @@ Full example of a zsh shell.
 
 #### Preview
 
-A small preview of this configuration:
+A preview of this configuration:
 ![zsh console](https://raw.githubusercontent.com/patbec/zsh-console-icons/master/zsh-console.svg)
 <sub>You can find the used [ANSI console colors here](https://github.com/patbec/zsh-console-icons#colors).</sub>
 
