@@ -3,7 +3,7 @@ galaxy_info:
   role_name: zsh
   author: patbec
   description: Installs and configures zsh for one or more users on Linux.
-
+  standalone: true
   license: MIT
 
   min_ansible_version: "2.13"
@@ -11,10 +11,15 @@ galaxy_info:
   platforms:
     - name: Debian
       versions:
-        - all
+        - bullseye
+        - buster
+        - stretch
     - name: Ubuntu
       versions:
-        - all
+        - jammy
+        - focal
+        - bionic
+        - xenial
 
   galaxy_tags:
     - zsh
