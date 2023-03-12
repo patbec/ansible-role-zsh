@@ -3,6 +3,7 @@
   ansible.builtin.assert:
     that:
       - zsh_dependencies is defined
+      - zsh_executable is defined
       - zsh_config_mode is defined
       - zsh_config_backup is defined
       - zsh_config_overwrite is defined
@@ -19,14 +20,6 @@
   tags:
     - zsh
     - dependencies
-
-- name: Get zsh installed path
-  ansible.builtin.command: /bin/which zsh
-  register: zsh_installed_path
-  changed_when: false
-  tags:
-    - zsh
-    - shell
 
 - name: Create zsh system files
   ansible.builtin.template:

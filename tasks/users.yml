@@ -2,7 +2,7 @@
 - name: Ensure zsh is the default shell
   ansible.builtin.user:
     name: "{{ zsh_user }}"
-    shell: "{{ zsh_installed_path.stdout }}"
+    shell: "{{ zsh_executable }}"
   become: true
   tags:
     - zsh

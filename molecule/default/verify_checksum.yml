@@ -4,7 +4,7 @@
 #
 - name: Get stats of a zsh file
   ansible.builtin.stat:
-    path: "{{ file_to_check }}"
+    path: "{{ file_to_check.filename }}"
     checksum_algorithm: sha1
   register: file_info
 
@@ -14,6 +14,6 @@
       - file_info is defined
       - file_info.stat is defined
       - file_info.stat.exists == true
-      - file_info.stat.checksum == "4d60d8b73b0c8025aa6ca21c8ee39298a5e62861"
-    fail_msg: "File '{{ file_to_check }}' could not be verified."
-    success_msg: "File '{{ file_to_check }}' has passed."
+      - file_info.stat.checksum == "{{ file_to_check.checksum }}"
+    fail_msg: "File '{{ file_to_check.filename }}' could not be verified."
+    success_msg: "File '{{ file_to_check.filename }}' has passed."

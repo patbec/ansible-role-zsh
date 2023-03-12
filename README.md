@@ -33,7 +33,9 @@ Default variables in this playbook.
 | zsh_system_config    | A list of zsh files to be distributed globally.        | `[]`                 |
 | zsh_users            | A list of users who should get zsh as default shell.   | `{{ ansible_user }}` |
 | zsh_dependencies     | A list of additional packages to install.              | `[]`                 |
+| zsh_executable       | Path to the executable.                                | `/usr/bin/zsh`       |
 
+> **Molecule:** Unit test fails if a symbolic link is specified for `zsh_executable`.
 
 The `zsh_users_config` property is a dictionary:
 

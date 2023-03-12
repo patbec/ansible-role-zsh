@@ -1,37 +1,117 @@
 {
-  // See https://go.microsoft.com/fwlink/?LinkId=733558
-  // for the documentation about the tasks.json format
   "version": "2.0.0",
   "tasks": [
     {
       "label": "🧬 molecule test",
-      "detail": "Performs a complete test without destroying containers.",
+      "detail": "Performs a test with all distributions.",
       "type": "shell",
-      "command": "molecule test --destroy=never",
+      "command": "molecule test --scenario-name local",
       "problemMatcher": [],
+      "icon": {
+        "id": "play",
+        "color": "terminal.ansiGreen"
+      },
       "group": {
-        "kind": "test",
-        "isDefault": true
+        "kind": "test"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": true
       }
     },
     {
       "label": "🧬 molecule converge",
-      "detail": "Runs a quick test.",
+      "detail": "Performs a quick test without destroy.",
       "type": "shell",
       "command": "molecule converge",
       "problemMatcher": [],
+      "icon": {
+        "id": "beaker",
+        "color": "terminal.ansiBlue"
+      },
       "group": {
-        "kind": "test"
+        "kind": "test",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      }
+    },
+    {
+      "label": "🧬 molecule verify",
+      "detail": "Performs a quick test without destroy.",
+      "type": "shell",
+      "command": "molecule verify",
+      "problemMatcher": [],
+      "icon": {
+        "id": "beaker",
+        "color": "terminal.ansiBlue"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
       }
     },
     {
       "label": "🧬 molecule login",
-      "detail": "Opens a shell on the test container for debbugging purposes.",
+      "detail": "Opens a shell on the quick test container.",
       "type": "shell",
       "command": "molecule login",
       "problemMatcher": [],
+      "isBackground": true,
+      "icon": {
+        "id": "debug-console",
+        "color": "terminal.ansiBlue"
+      },
       "group": {
         "kind": "test"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      }
+    },
+    {
+      "label": "🧬 molecule destroy",
+      "detail": "Use the provisioner to destroy the instances.",
+      "type": "shell",
+      "command": "molecule destroy",
+      "problemMatcher": [],
+      "icon": {
+        "id": "trash",
+        "color": "terminal.ansiBlue"
+      },
+      "group": {
+        "kind": "test"
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": true
       }
     }
   ]

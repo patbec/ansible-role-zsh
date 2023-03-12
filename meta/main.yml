@@ -13,13 +13,10 @@ galaxy_info:
       versions:
         - bullseye
         - buster
-        - stretch
     - name: Ubuntu
       versions:
         - jammy
         - focal
-        - bionic
-        - xenial
 
   galaxy_tags:
     - zsh
