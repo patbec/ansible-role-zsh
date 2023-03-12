@@ -2,7 +2,7 @@
 zsh_dependencies: []
 zsh_executable: "/usr/bin/zsh"
 
-zsh_config_mode: 0644
+zsh_config_mode: "0644"
 zsh_config_backup: true
 zsh_config_overwrite: false
 
