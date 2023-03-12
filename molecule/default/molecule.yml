@@ -20,8 +20,8 @@ platforms:
 provisioner:
   name: ansible
   inventory:
-    host_vars:
-      instance:
+    group_vars:
+      all:
         ansible_user: root
 verifier:
   name: ansible
