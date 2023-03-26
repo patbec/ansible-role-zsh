@@ -4,6 +4,8 @@
 
 ![Ansible Role](https://img.shields.io/ansible/role/d/58811) ![Ansible Quality Score](https://img.shields.io/ansible/quality/58811) ![GitHub](https://img.shields.io/github/license/patbec/ansible-role-zsh)
 
+## Deprecated: This role has been migrated to a Collection, [here you can find the new version](https://galaxy.ansible.com/bec/shell).
+
 This is a simple role to install and set up the **zsh-shell** on Linux.
 
 The following steps are supported:
